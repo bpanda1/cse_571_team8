@@ -153,7 +153,7 @@ class Helper:
             print "Service call failed: %s"%e
 
 
-    def execute_action(self, action, action_params):
+    def execute_action(self, action, action_params, robot_name):
         """
         This function executes the given action in the state being maintained by the server.
 
@@ -183,7 +183,7 @@ class Helper:
         try:
             execute_action = rospy.ServiceProxy('execute_action', ActionMsg)
             action_params = json.dumps(action_params)
-            response = execute_action(action, action_params)
+            response = execute_action(action, robot_name, action_params)
             return_val = True
             if response.success == -1:
                 return_val = False

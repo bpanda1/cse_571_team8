@@ -92,12 +92,12 @@ def get_reward(state, action, next_state):
         print "Service call failed: %s"%e
 
 
-def execute_action(action, action_params):
+def execute_action(action, action_params, robot_name):
     rospy.wait_for_service('execute_action')
     try:
         execute_action = rospy.ServiceProxy('execute_action', ActionMsg)
         action_params = json.dumps(action_params)
-        response = execute_action(action, action_params)
+        response = execute_action(action, robot_name, action_params)
         return response.success, json.loads(response.next_state)
     except rospy.ServiceException, e:
         print "Service call failed: %s"%e

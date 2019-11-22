@@ -9,6 +9,7 @@ import os
 import argparse
 import numpy as np
 import random
+import environment_api as api
 from matplotlib import pyplot as plt
 
 parser = argparse.ArgumentParser(formatter_class=argparse.RawTextHelpFormatter)
@@ -62,6 +63,10 @@ class QLearning:
     def task1(self, trajectories_json_file):
         q_values = {}
         # Your code here
+        print(self.helper.get_all_actions())
+        #print(self.helper.get_all_actions(2))
+        api.execute_action('moveF', {}, 'robot1')
+        #self.helper.execute_action('moveF', {}, 'robot2')
         
  
         return q_values  
